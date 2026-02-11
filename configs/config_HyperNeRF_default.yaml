@@ -1,0 +1,103 @@
+# Configuration for HyperNeRF ODE training
+
+# Model configuration
+model:
+  latent_dim: 64
+  d_model: 128
+  nhead: 8
+  num_encoder_layers: 4
+  num_decoder_layers: 4
+  ode_nhidden: 64
+  decoder_nhidden: 128
+  noise_std: 1
+  kl_beta: 1
+  ode_layers: 4
+  variational_inference: false
+  use_torchode: true
+  use_tanh: true
+  rtol: 1.0e-3
+  atol: 1.0e-4
+
+# Data configuration
+data:
+  batch_size: 512
+  val_batch_size: 20000
+  obs_time_span: 0.4
+  obs_points: 30
+  extrap_points: 10
+  max_extrap_time_span: 0.1
+  num_time_windows: 50
+  max_gaussians_per_epoch: 50000
+  time_split: 0.9
+  num_workers: 0
+
+# Training configuration
+train:
+  epochs: 40
+  learning_rate: 1.0e-3
+  min_lr: 1.0e-6
+  warmup_epochs: 1
+  ode_weight: 1.0
+  reg_weight: 1.0e-5
+  xyz_reg_weight: 0.0  # Regularization weight for 3D smoothness (xyz coordinate changes)
+  reg_temperature: 0.15     # Adaptive steepness control (smaller = steeper)
+  expected_traj_loss_init: 0.02   # Expected initial trajectory loss (normalization upper bound)
+  expected_traj_loss_end: 0.0 # Expected final trajectory loss (normalization lower bound)
+  reg_use_ema: true
+  reg_ema_decay: 0.9
+  warmup_weight: 1.0
+  checkpoint_interval: 1
+  val_interval: 1
+  skip_eval: false
+  logging_images_val: 5
+  logging_images_train: 5
+
+# Optimizer and scheduler configuration
+optimizer:
+  weight_decay: 1.0e-6
+
+scheduler:
+  type: "cosine_annealing"
+  mode: "min"
+  factor: 0.5
+  patience: 3
+  verbose: true
+  T_max: 40
+  eta_min: 1.0e-6
+
+# Pipeline configuration
+
+pipeline:
+  convert_SHs_python: false
+  compute_cov3D_python: false
+  debug: false
+
+# Checkpoint and logging configuration
+checkpoint:
+  auto_resume: false
+  checkpoint_path: null
+  weight_only: false
+
+logging:
+  log_directory: "hypernerf_default "
+  wandb: true
+  wandb_project: "hypernerf_default "
+
+# Multi-scene (disabled)
+multi_scene:
+  enabled: false
+  scene_paths: []
+  scene_model_paths: []
+  scene_sampling_weights: null
+
+# Scene/dataset configuration block (kept for compatibility)
+stage1:
+  sh_degree: 3
+  is_6dof: false
+  source_path: null
+  is_blender: false
+  white_background: false
+  eval: true
+
+# Top-level background setting used by renderer
+white_background: false

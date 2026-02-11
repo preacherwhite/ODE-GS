@@ -1,0 +1,101 @@
+# Default configuration for ODE training
+# This file follows PyTorch Lightning style configuration structure
+load2gpu_on_the_fly: true
+# Model configuration
+model:
+  latent_dim: 64
+  d_model: 128
+  nhead: 8
+  num_encoder_layers: 4
+  num_decoder_layers: 4
+  ode_nhidden: 64
+  decoder_nhidden: 128
+  noise_std: 1
+  kl_beta: 1
+  ode_layers: 4
+  variational_inference: false
+  use_torchode: true
+  use_tanh: true
+  rtol: 1.0e-3
+  atol: 1.0e-4
+
+
+# Data configuration
+data:
+  batch_size: 1024
+  val_batch_size: 20000
+  obs_time_span: 0.6
+  obs_points: 30
+  extrap_points: 10
+  max_extrap_time_span: 0.2
+  num_time_windows: 50
+  max_gaussians_per_epoch: 50000
+  time_split: 0.8
+
+# Training configuration
+train:
+  epochs: 40    
+  learning_rate: 1.0e-3
+  warmup_epochs: 0
+  ode_weight: 1.0
+  reg_weight: 1.0e-5
+  xyz_reg_weight: 1.0e-3  # Regularization weight for 3D smoothness (xyz coordinate changes)
+  reg_temperature: 0.05     # Adaptive steepness control (smaller = steeper)
+  expected_traj_loss_init: 0.05   # Expected initial trajectory loss (normalization upper bound)
+  expected_traj_loss_end: 0.0 # Expected final trajectory loss (normalization lower bound)
+  reg_use_ema: true
+  reg_ema_decay: 0.9
+  warmup_weight: 1.0
+  checkpoint_interval: 1
+  val_interval: 1
+  skip_eval: false
+  logging_images_val: 5  # Number of validation images to log (uniformly spaced)
+  logging_images_train: 5  # Number of training images to log (uniformly spaced)
+
+# Optimizer and scheduler configuration
+optimizer:
+  weight_decay: 1.0e-6
+
+scheduler:
+  type: "cosine_annealing"  # Options: "reduce_on_plateau", "cosine_annealing"
+  # ReduceLROnPlateau parameters
+  mode: "min"
+  factor: 0.5
+  patience: 3
+  verbose: true
+  # CosineAnnealingLR parameters  
+  T_max: 40  # Maximum number of iterations (typically equals epochs)
+  eta_min: 1.0e-5  # Minimum learning rate
+
+# Pipeline configuration
+pipeline:
+  convert_SHs_python: false
+  compute_cov3D_python: false
+  debug: false
+
+# Checkpoint and logging configuration
+checkpoint:
+  auto_resume: false
+  checkpoint_path: null
+  weight_only: false
+
+logging:
+  log_directory: "obs_0.6_extrap_0.2"
+  wandb: true
+  wandb_project: "obs_0.6_extrap_0.2"
+
+# Multi-scene configuration (optional)
+multi_scene:
+  enabled: false
+  scene_paths: []
+  scene_model_paths: []
+  scene_sampling_weights: null
+
+stage1:
+  # Scene/dataset configuration
+  sh_degree: 3
+  is_6dof: false
+  source_path: null
+  is_blender: false
+  white_background: false 
+  eval: true

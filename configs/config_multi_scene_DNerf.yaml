@@ -1,0 +1,102 @@
+# Multi-scene configuration for ODE training on D-NeRF scenes
+
+model:
+  latent_dim: 64
+  d_model: 128
+  nhead: 8
+  num_encoder_layers: 4
+  num_decoder_layers: 4
+  ode_nhidden: 64
+  decoder_nhidden: 128
+  noise_std: 1
+  kl_beta: 1
+  ode_layers: 4
+  variational_inference: false
+  use_torchode: true
+  use_tanh: true
+  rtol: 1.0e-3
+  atol: 1.0e-4
+
+data:
+  batch_size: 8192
+  val_batch_size: 20000
+  obs_time_span: 0.6
+  obs_points: 30
+  extrap_points: 10
+  max_extrap_time_span: 0.4
+  num_time_windows: 50
+  max_gaussians_per_epoch: 50000
+  time_split: null
+
+train:
+  epochs: 40
+  learning_rate: 1.0e-4
+  min_lr: 1.0e-6  # Minimum learning rate
+  warmup_epochs: 1
+  ode_weight: 1.0
+  reg_weight: 0.0
+  xyz_reg_weight: 0.0
+  warmup_weight: 1.0
+  checkpoint_interval: 1
+  val_interval: 1
+  skip_eval: false
+  logging_images_val: 5
+  logging_images_train: 5
+
+optimizer:
+  weight_decay: 1.0e-6
+
+scheduler:
+  type: "cosine_annealing"
+  mode: "min"
+  factor: 0.5
+  patience: 3
+  verbose: true
+  T_max: 40
+  eta_min: 1.0e-6
+
+
+pipeline:
+  convert_SHs_python: false
+  compute_cov3D_python: false
+  debug: false
+
+checkpoint:
+  auto_resume: false
+  checkpoint_path: null
+  weight_only: false
+
+logging:
+  log_directory: "output/multi_scene_DNerf_det"
+  wandb: true
+  wandb_project: "ode-gaussians-DNerf-multiscene-det"
+
+multi_scene:
+  enabled: true
+  scene_paths:
+    - "data/D-NeRF/hook"
+    - "data/D-NeRF/standup"
+    - "data/D-NeRF/trex"
+    - "data/D-NeRF/mutant"
+    - "data/D-NeRF/jumpingjacks"
+    - "data/D-NeRF/hellwarrior"
+    - "data/D-NeRF/bouncingballs"
+  scene_model_paths:
+    - "output/D-NeRF/hook"
+    - "output/D-NeRF/standup"
+    - "output/D-NeRF/trex"
+    - "output/D-NeRF/mutant"
+    - "output/D-NeRF/jumpingjacks"
+    - "output/D-NeRF/hellwarrior"
+    - "output/D-NeRF/bouncingballs"
+  scene_sampling_weights: null
+
+stage1:
+  sh_degree: 3
+  is_6dof: false
+  # Primary scene for evaluation during training (also used to load initial models)
+  # Keep this aligned with one of multi_scene.scene_paths.
+  source_path: "data/D-NeRF/hook"
+  is_blender: true
+  white_background: false
+  eval: true

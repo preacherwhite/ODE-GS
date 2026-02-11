@@ -1,0 +1,45 @@
+model:
+  latent_dim: 64
+  d_model: 128
+  nhead: 8
+  num_encoder_layers: 4
+  num_decoder_layers: 4
+  ode_nhidden: 64
+  decoder_nhidden: 128
+  noise_std: 1
+  kl_beta: 1
+  ode_layers: 4
+  variational_inference: false
+  use_torchode: true
+  use_tanh: true
+  rtol: 1.0e-3
+  atol: 1.0e-4
+
+data:
+  batch_size: 20000
+  obs_time_span: 0.6
+  obs_points: 30
+  time_split: 0.8
+  current_extrap_time_span: 0.2
+
+render:
+  save_video: false
+  video_fps: 256
+  camera_idx: null
+  font_size: 24
+  evaluate: true
+  video_duration: 20
+  eval_only: true
+  deform_only: false
+
+pipeline:
+  convert_SHs_python: false
+  compute_cov3D_python: false
+  debug: false
+
+stage1:
+  is_blender: false
+  is_6dof: false
+  source_path: null
+  white_background: false 
+  eval: true
