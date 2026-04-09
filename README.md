@@ -1,7 +1,21 @@
 <p>
   <a href="https://arxiv.org/abs/2506.05480"><img src="https://img.shields.io/badge/arXiv-2411.16750-b31b1b?style=flat&logo=arxiv&logoColor=white" alt="arXiv"></a>
 </p>
-### ODE-GS: Latent ODEs for Dynamic Scene Extrapolation with 3D Gaussian Splatting
+
+ODE-GS: Latent ODEs for Dynamic Scene Extrapolation with 3D Gaussian Splatting
+<p>
+  <a href="https://preacherwhite.github.io/">Daniel Wang</a><sup>1</sup>&ensp;
+  <a href="https://patrickqrim.github.io/">Patrick Rim</a><sup>1</sup>&ensp;
+  <a href="https://www.linkedin.com/in/tian-tian-a3b3851b6/">Tian Tian</a><sup>2</sup>&ensp;
+  <a href="https://donglao.github.io/">Dong Lao</a><sup>3</sup>&ensp;
+  <a href="https://vision.cs.yale.edu/members/alex-wong/">Alex Wong</a><sup>1</sup>&ensp;
+  <a href="http://ganeshsun.com/">Ganesh Sundaramoorthi</a><sup>4</sup>
+</p>
+<p>
+  <sup>1</sup>Yale University &ensp; <sup>2</sup>TU Delft &ensp; <sup>3</sup>Louisiana State University&ensp; <sup>4</sup>RTX
+</p>
+
+<p>Accepted by ICLR 2026</p>
 
 This repo contains the official implementation of ICLR 2026 paper "ODE-GS: Latent ODEs for Dynamic Scene Extrapolation with 3D Gaussian Splatting".
 Link to Paper: https://arxiv.org/abs/2506.05480
