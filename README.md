@@ -17,8 +17,10 @@ ODE-GS: Latent ODEs for Dynamic Scene Extrapolation with 3D Gaussian Splatting
 
 <p>Accepted by ICLR 2026</p>
 
+![pipeline](./pipeline.png)
 This repo contains the official implementation of ICLR 2026 paper "ODE-GS: Latent ODEs for Dynamic Scene Extrapolation with 3D Gaussian Splatting".
 Link to Paper: https://arxiv.org/abs/2506.05480
+
 
 ## Prerequisites
 - Python 3.8+
