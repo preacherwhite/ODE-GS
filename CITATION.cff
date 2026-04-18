@@ -1,6 +1,6 @@
 cff-version: 1.2.0
-title: "Ode-gs: Latent odes for dynamic scene extrapolation with 3d gaussian splatting"
-message: "If you use this software, please cite this work as follows."
+message: "If you use this software, please cite the following work."
+title: "ODE-GS: Latent ODEs for Dynamic Scene Extrapolation with 3D Gaussian Splatting"
 type: article
 authors:
   - family-names: Wang
@@ -16,8 +16,4 @@ authors:
   - family-names: Sundaramoorthi
     given-names: Ganesh
 year: 2025
-journal: "arXiv preprint"
-identifiers:
-  - type: arxiv
-    value: "2506.05480"
 url: "https://arxiv.org/abs/2506.05480"
