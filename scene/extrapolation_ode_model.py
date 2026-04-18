@@ -111,7 +111,7 @@ class TransformerLatentODEWrapper(nn.Module):
         # Fix noise variance as a non-trainable buffer
         self.register_buffer('log_noise_var', torch.log(torch.tensor(noise_std ** 2, dtype=torch.float32)))
         # KL divergence scaling factor (beta-VAE style)
-        self.kl_beta = kl_beta
+        self.kl_beta = kl_beta if kl_beta is not None else 1.0
         # Recognition: transformer encoder to encode the observed trajectory
         self.value_embedding = nn.Linear(obs_dim, d_model)
         self.positional_embedding = TimeSeriesSinusoidalPositionalEmbedding(num_positions=1000, embedding_dim=d_model)
@@ -414,7 +414,7 @@ class TransformerLatentODEWrapper(nn.Module):
             if self.variational_inference:
                 device = pred_x_last.device
                 # Use trainable noise variance
-                #noise_logvar = self.log_noise_vars
+                noise_logvar = self.log_noise_var
                 # Loss for the last observation frame
                 logpx = log_normal_pdf(obs_traj[:, -1], pred_x_last, noise_logvar)
                 recon_loss = -logpx.sum(dim=1).mean()

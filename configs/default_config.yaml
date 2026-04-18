@@ -12,7 +12,7 @@ model:
   decoder_nhidden: 128
   noise_std: 0.001
   ode_layers: 4
-  variational_inference: true
+  variational_inference: false
   use_torchode: true
   use_tanh: true
   rtol: 1.0e-3
@@ -41,6 +41,11 @@ train:
   ode_weight: 1.0
   reg_weight: 1.0e-3
   xyz_reg_weight: 1.0e-3  # Regularization weight for 3D smoothness (xyz coordinate changes)
+  reg_temperature: 0.05
+  expected_traj_loss_init: 0.05
+  expected_traj_loss_end: 0.0
+  reg_use_ema: true
+  reg_ema_decay: 0.9
   warmup_weight: 1.0
   checkpoint_interval: 1
   val_interval: 1

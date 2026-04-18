@@ -15,7 +15,6 @@ pydantic
 torchdiffeq
 torchode
 torchtyping
-functorch
 dearpygui
 gdown
 gitpython

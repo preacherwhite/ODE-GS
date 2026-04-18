@@ -96,6 +96,6 @@ stage1:
   sh_degree: 3
   is_6dof: false
   source_path: null
-  is_blender: false
+  is_blender: true
   white_background: false 
   eval: true
