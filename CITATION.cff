@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+title: "Ode-gs: Latent odes for dynamic scene extrapolation with 3d gaussian splatting"
+message: "If you use this software, please cite this work as follows."
+type: article
+authors:
+  - family-names: Wang
+    given-names: Daniel
+  - family-names: Rim
+    given-names: Patrick
+  - family-names: Tian
+    given-names: Tian
+  - family-names: Lao
+    given-names: Dong
+  - family-names: Wong
+    given-names: Alex
+  - family-names: Sundaramoorthi
+    given-names: Ganesh
+year: 2025
+journal: "arXiv preprint"
+identifiers:
+  - type: arxiv
+    value: "2506.05480"
+url: "https://arxiv.org/abs/2506.05480"
