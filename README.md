@@ -2,7 +2,7 @@
   <a href="https://arxiv.org/abs/2506.05480"><img src="https://img.shields.io/badge/arXiv-2411.16750-b31b1b?style=flat&logo=arxiv&logoColor=white" alt="arXiv"></a>
 </p>
 
-ODE-GS: Latent ODEs for Dynamic Scene Extrapolation with 3D Gaussian Splatting
+**ODE-GS: Latent ODEs for Dynamic Scene Extrapolation with 3D Gaussian Splatting**
 <p>
   <a href="https://preacherwhite.github.io/">Daniel Wang</a><sup>1</sup>&ensp;
   <a href="https://patrickqrim.github.io/">Patrick Rim</a><sup>1</sup>&ensp;
@@ -155,3 +155,17 @@ Outputs are written to `model_path/rendered_output*` with:
 - `single_camera/` and `val_full/` image grids
 - `videos/` for MP4s
 - `metrics.json` and per-image metrics when evaluation is enabled
+
+
+## Citation
+
+If you use this codebase in your research, please cite our paper:
+```bibtex
+@article{wang2025ode,
+  title={ODE-GS: Latent ODEs for Dynamic Scene Extrapolation with 3D Gaussian Splatting},
+  author={Wang, Daniel and Rim, Patrick and Tian, Tian and Lao, Dong and Wong, Alex and Sundaramoorthi, Ganesh},
+  journal={arXiv preprint arXiv:2506.05480},
+  year={2025}
+}
+````
+
